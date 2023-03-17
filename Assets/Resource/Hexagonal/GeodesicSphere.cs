@@ -1,11 +1,15 @@
 using UnityEngine;
 
+[ExecuteAlways]
 public class GeodesicSphere : MonoBehaviour
 {
     public MeshFilter meshFilter;
 
     void Start()
     {
+        if (meshFilter == null)
+            return;
+
         Mesh mesh = new Mesh();
 
         Vector3[] vertices = new [] {
