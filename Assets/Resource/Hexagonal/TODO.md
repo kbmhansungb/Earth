@@ -5,4 +5,4 @@
 - [ ] (2023 03 17)penta hexagonal sphere구현하도록 합니다.
 	* 목표로 하는 결과물 https://www.youtube.com/watch?v=_m5UupkWO8I
 	- [x] (2023 03 17)런타임에 메쉬를 만들고 렌더되도록 만듭니다.
-	- [ ] Penta hexagonal sphere가 만들어지도록 합니다.
+	- [ ] (2023 03 17)Penta hexagonal sphere가 만들어지도록 합니다.

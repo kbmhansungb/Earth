@@ -4,54 +4,31 @@ using UnityEngine;
 
 namespace BM.MeshGenerator
 {
-    public class SquareMeshGenerator : MeshGenerator
+    public static class SquareMeshGenerator
     {
-        public override Mesh Generate()
+        public static void AddSquare(this MeshGenerator generator)
         {
-            var mesh = base.Generate();
+            generator.Vertices.Add(new Vector3(0, 0, 0));
+            generator.Vertices.Add(new Vector3(0, 1, 0));
+            generator.Vertices.Add(new Vector3(1, 0, 0));
+            generator.Vertices.Add(new Vector3(1, 1, 0));
 
-            Vector3[] vertices = new[] {
-             // creating vertices of quad. aligning them in shape of square
-             
-             new Vector3(0, 0, 0),
-             new Vector3(0, 1, 0),
-             new Vector3(1, 0, 0),
-             new Vector3(1, 1, 0),
-         };
-            mesh.vertices = vertices;
+            generator.UVs.Add(new Vector2(0, 0));
+            generator.UVs.Add(new Vector2(0, 1));
+            generator.UVs.Add(new Vector2(1, 0));
+            generator.UVs.Add(new Vector2(1, 1));
 
+            generator.Normals.Add(-Vector3.forward);
+            generator.Normals.Add(-Vector3.forward);
+            generator.Normals.Add(-Vector3.forward);
+            generator.Normals.Add(-Vector3.forward);
 
-            // generate uv
-            Vector2[] uv = new[] {
-             // generate uv for corresponding vertices also in form of square
-             
-             new Vector2(0, 0),
-             new Vector2(0, 1),
-             new Vector2(1, 0),
-             new Vector2(1, 1),
-         };
-            mesh.uv = uv;
-
-            Vector3[] normals = new[] {
-             // normals same as tris
-             -Vector3.forward,
-             -Vector3.forward,
-             -Vector3.forward,
-             -Vector3.forward,
-         };
-            mesh.normals = normals;
-
-            int[] triangles = new[] {
-             // tris are viewed as group of three
-             // remember to order them in clockwise
-             // position of index is not importaint as long as they are in clockwise order
-             
-             0,1,2,// first tris
-             2,1,3// second tris
-         };
-            mesh.triangles = triangles;
-
-            return mesh;
+            generator.Triangles.Add(0);
+            generator.Triangles.Add(1);
+            generator.Triangles.Add(2);
+            generator.Triangles.Add(2);
+            generator.Triangles.Add(1);
+            generator.Triangles.Add(3);
         }
     }
 }

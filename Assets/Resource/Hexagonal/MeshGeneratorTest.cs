@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace BM.MeshGenerator
 {
-    [ExecuteAlways]
     public class MeshGeneratorTest : MonoBehaviour
     {
         public MeshFilter meshFilter;
@@ -12,8 +11,10 @@ namespace BM.MeshGenerator
             if (meshFilter == null)
                 return;
 
-            var squareMeshGenerator = new SquareMeshGenerator();
-            meshFilter.mesh = squareMeshGenerator.Generate();
+            var meshGenerator = new MeshGenerator();
+            meshGenerator.AddSquare();
+
+            meshFilter.mesh = meshGenerator.Generate(); ;
         }
     }
 }
