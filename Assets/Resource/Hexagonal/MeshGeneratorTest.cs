@@ -12,9 +12,9 @@ namespace BM.MeshGenerator
                 return;
 
             var meshGenerator = new MeshGenerator();
-            meshGenerator.AddSquare();
+            meshGenerator.AddIcosahedron();
 
-            meshFilter.mesh = meshGenerator.Generate(); ;
+            meshFilter.mesh = SubdivideMeshGenerator.SubdivideMesh(meshGenerator.Generate());
         }
     }
 }
