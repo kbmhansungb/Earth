@@ -6,7 +6,7 @@ namespace BM.MeshGenerator
 {
     public static class SubdivideMeshGenerator
     {
-        public static Mesh SubdivideMesh(Mesh mesh)
+        public static Mesh SubdivideMesh(this MeshGenerator generator, Mesh mesh)
         {
             Vector3[] originalVertices = mesh.vertices;
             int[] originalTriangles = mesh.triangles;

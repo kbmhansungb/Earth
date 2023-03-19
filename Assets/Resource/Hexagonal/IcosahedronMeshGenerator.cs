@@ -6,9 +6,11 @@ namespace BM.MeshGenerator
 {
     public static class IcosahedronMeshGenerator
     {
-        public static void AddIcosahedron(this MeshGenerator generator)
+        public static Mesh CreateIcosahedron(this MeshGenerator generator)
         {
-            int lastIndex = generator.Vertices.Count;
+            var mesh = new Mesh();
+
+            // Golden Ratio
             float t = (1f + Mathf.Sqrt(5f)) / 2f;
 
             Vector3[] vertices = {
@@ -40,30 +42,32 @@ namespace BM.MeshGenerator
             }
 
             int[] triangles = {
-                lastIndex + 0,      lastIndex + 11,     lastIndex + 5,
-                lastIndex + 0,      lastIndex + 5,      lastIndex + 1,
-                lastIndex + 0,      lastIndex + 1,      lastIndex + 7,
-                lastIndex + 0,      lastIndex + 7,      lastIndex + 10,
-                lastIndex + 0,      lastIndex + 10,     lastIndex + 11,
-                lastIndex + 1,      lastIndex + 5,      lastIndex + 9,
-                lastIndex + 5,      lastIndex + 11,     lastIndex + 4,
-                lastIndex + 11,     lastIndex + 10,     lastIndex + 2,
-                lastIndex + 10,     lastIndex + 7,      lastIndex + 6,
-                lastIndex + 7,      lastIndex + 1,      lastIndex + 8,
-                lastIndex + 3,      lastIndex + 9,      lastIndex + 4,
-                lastIndex + 3,      lastIndex + 4,      lastIndex + 2,
-                lastIndex + 3,      lastIndex + 2,      lastIndex + 6,
-                lastIndex + 3,      lastIndex + 6,      lastIndex + 8,
-                lastIndex + 3,      lastIndex + 8,      lastIndex + 9,
-                lastIndex + 4,      lastIndex + 9,      lastIndex + 5,
-                lastIndex + 2,      lastIndex + 4,      lastIndex + 11,
-                lastIndex + 6,      lastIndex + 2,      lastIndex + 10,
-                lastIndex + 8,      lastIndex + 6,      lastIndex + 7,
-                lastIndex + 9,      lastIndex + 8,      lastIndex + 1
+                0,  11, 5,
+                0,  5,  1,
+                0,  1,  7,
+                0,  7,  10,
+                0,  10, 11,
+                1,  5,  9,
+                5,  11, 4,
+                11, 10, 2,
+                10, 7,  6,
+                7,  1,  8,
+                3,  9,  4,
+                3,  4,  2,
+                3,  2,  6,
+                3,  6,  8,
+                3,  8,  9,
+                4,  9,  5,
+                2,  4,  11,
+                6,  2,  10,
+                8,  6,  7,
+                9,  8,  1
             };
 
-            generator.Vertices.AddRange(vertices);
-            generator.Triangles.AddRange(triangles);
+            mesh.vertices = vertices;
+            mesh.triangles = triangles;
+
+            return mesh;
         }
     }
 }
