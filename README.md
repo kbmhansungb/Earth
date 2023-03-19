@@ -6,11 +6,13 @@ graph TD
 subgraph MeshGenerator
 	Icosahedron
 	SubdividiedIcosahderon
+	NormalizedSubdividiedIcosahderon
 	PentaHexagonalSphere
 end
 
 Icosahedron--->SubdividiedIcosahderon
-SubdividiedIcosahderon--->PentaHexagonalSphere
+SubdividiedIcosahderon--->NormalizedSubdividiedIcosahderon
+NormalizedSubdividiedIcosahderon--->PentaHexagonalSphere
 ```
 </div></center>
 

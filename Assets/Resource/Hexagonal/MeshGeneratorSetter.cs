@@ -7,6 +7,9 @@ namespace BM.MeshGenerator
     {
         public MeshFilter meshFilter;
 
+        [Range(0f, 1f)]
+        [SerializeField] private float m_ratio = 0.5f;
+
         void Start()
         {
             if (meshFilter == null)
@@ -20,7 +23,10 @@ namespace BM.MeshGenerator
             subdividiedIcosahedron.normalizeSphere(Vector3.zero);
             subdividiedIcosahedron.RecalculateNormals();
 
-            meshFilter.mesh = subdividiedIcosahedron;
+            var model = meshGenerator.MakeModel(subdividiedIcosahedron);
+            var newMesh = meshGenerator.MakeMesh(model);
+
+            meshFilter.mesh = newMesh;
         }
     }
 }
