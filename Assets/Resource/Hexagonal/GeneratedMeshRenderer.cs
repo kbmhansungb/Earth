@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BM.MeshGenerator
 {
-    public class MeshGeneratorTest : MonoBehaviour
+    public class GeneratedMeshRenderer : MonoBehaviour
     {
         public MeshFilter meshFilter;
 
