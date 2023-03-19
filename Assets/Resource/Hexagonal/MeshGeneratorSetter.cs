@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace BM.MeshGenerator
 {
-    public class GeneratedMeshRenderer : MonoBehaviour
+    // MeshGenerator에 의해 생성된 Mesh를 MeshFillter및 MeshRenderer에 적용하는 역활을 합니다.
+    public class MeshGeneratorSetter : MonoBehaviour
     {
         public MeshFilter meshFilter;
 
