@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BM.MeshGenerator
 {
-    public static class IcosahedronMeshGenerator
+    public static class MeshGenerator_IcosahedronExtention
     {
         public static Mesh CreateIcosahedron(this MeshGenerator generator)
         {

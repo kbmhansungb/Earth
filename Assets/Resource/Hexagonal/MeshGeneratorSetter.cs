@@ -15,6 +15,10 @@ namespace BM.MeshGenerator
             var meshGenerator = new MeshGenerator();
             var icosahedron = meshGenerator.CreateIcosahedron();
             var subdividiedIcosahedron = meshGenerator.SubdivideMesh(icosahedron);
+            // TODO subdivideMesh에서 파라메터로 몇번 나눌 수 있게 할지 해야함
+            subdividiedIcosahedron = meshGenerator.SubdivideMesh(subdividiedIcosahedron);
+            subdividiedIcosahedron.normalizeSphere(Vector3.zero);
+            subdividiedIcosahedron.RecalculateNormals();
 
             meshFilter.mesh = subdividiedIcosahedron;
         }
