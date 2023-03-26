@@ -7,9 +7,6 @@ namespace BM.MeshGenerator
     {
         public MeshFilter meshFilter;
 
-        [Range(0f, 1f)]
-        [SerializeField] private float m_ratio = 0.5f;
-
         void Start()
         {
             var meshGenerator = new MeshGenerator();
