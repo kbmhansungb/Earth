@@ -87,5 +87,25 @@ namespace BM.MeshGenerator
             m_polygons.Add(polygon);
             return polygon;
         }
+
+        public List<Polygon> AddPolygons(List<Vector3> verticesData, List<int> trianglesData)
+        {
+            List<Vertex> vertices = AddVertices(verticesData.AsReadOnly());
+            
+            List<Polygon> polygons = new List<Polygon>(trianglesData.Count / 3);
+            for (int triangleIndex = 0; triangleIndex < trianglesData.Count; triangleIndex += 3)
+            {
+                Vertex Vertex1 = vertices[trianglesData[triangleIndex + 0]];
+                Vertex Vertex2 = vertices[trianglesData[triangleIndex + 1]];
+                Vertex Vertex3 = vertices[trianglesData[triangleIndex + 2]];
+
+                Line line1 = AddLine(Vertex1, Vertex2);
+                Line line2 = AddLine(Vertex2, Vertex3);
+                Line line3 = AddLine(Vertex3, Vertex1);
+
+                Polygon polygon = AddPolygon(new Line[] { line1, line2, line3 });
+            }
+            return polygons;
+        }
     }
 } 
