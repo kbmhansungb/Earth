@@ -6,7 +6,7 @@ namespace BM.MeshGenerator
 {
     public static class Icosahedron
     {
-        public static (List<Vector3>, List<int>) GetIcosahedron()
+        public static (List<Vector3> vertices, List<int> triangles) GetIcosahedron()
         {
             List<Vector3> vertices = GetIcosahedronVertices();
             List<int> triangles = GetIcosahedronTriangles();

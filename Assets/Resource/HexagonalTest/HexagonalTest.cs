@@ -14,7 +14,6 @@ namespace BM.MeshGenerator
         {
             Model model = new Model();
 
-            // 정이십면체에 대한 버택스와 트라이앵글을 생성하고 이를 저장
             (List<Vector3> verticesData, List< int > trianglesData) = Icosahedron.GetIcosahedron();
             model.AddPolygons(verticesData, trianglesData);
 
