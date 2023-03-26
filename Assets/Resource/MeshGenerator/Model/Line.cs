@@ -47,12 +47,12 @@ namespace BM.MeshGenerator
 
         private Line() { }
 
-        public Line(Vertex Begin, Vertex End)
+        public Line(Vertex begin, Vertex end)
         {
             m_isDefault = false;
 
-            m_data.Begin = Begin;
-            m_data.End = End;
+            m_data.Begin = begin;
+            m_data.End = end;
 
             m_reversedLine = new Line();
             m_reversedLine.m_isDefault = true;
@@ -61,6 +61,10 @@ namespace BM.MeshGenerator
 
             m_data.Begin.Lines.Add(this);
             m_data.End.Lines.Add(this);
+
+            // 버텍스에 line을 추가합니다.
+            begin.Lines.Add(this);
+            end.Lines.Add(this);
         }
     }
 } 
