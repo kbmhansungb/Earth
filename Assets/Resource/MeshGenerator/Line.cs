@@ -1,0 +1,66 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using UnityEngine;
+
+namespace BM.MeshGenerator
+{
+    public class Line
+    {
+        private bool m_isDefault;
+        private Line m_reversedLine;
+
+        // A -> B로 가는 라인과 B -> A로 가는 라인은 유사하지만, 왼쪽과 오른쪽 폴리곤이 반전됩니다.
+        // 따라서 기본 상태가 아니면 반전된 라인입니다.
+        private class Data
+        {
+            public Vertex Begin;
+            public Vertex End;
+
+            public Polygon Left;
+            public Polygon Right;
+        }
+        private Data m_data = new Data();
+
+        public Line ReversedLine { get => m_reversedLine; }
+        public Vertex Begin { get => m_isDefault ? m_data.Begin : m_data.End; }
+        public Vertex End { get => m_isDefault ? m_data.End : m_data.Begin; }
+        public Polygon Left { 
+            get => m_isDefault ? m_data.Left : m_data.Right; 
+            set { 
+                if (m_isDefault)
+                    m_data.Left = value;
+                else
+                    m_data.Right = value;
+            }
+        }
+        public Polygon Right { 
+            get => m_isDefault ? m_data.Right : m_data.Left;
+            set
+            {
+                if (m_isDefault)
+                    m_data.Right = value;
+                else
+                    m_data.Left = value;
+            }
+        }
+
+        private Line() { }
+
+        public Line(Vertex Begin, Vertex End)
+        {
+            m_isDefault = false;
+
+            m_data.Begin = Begin;
+            m_data.End = End;
+
+            m_reversedLine = new Line();
+            m_reversedLine.m_isDefault = true;
+            m_reversedLine.m_reversedLine = this;
+            m_reversedLine.m_data = m_data;
+
+            m_data.Begin.Lines.Add(this);
+            m_data.End.Lines.Add(this);
+        }
+    }
+} 
