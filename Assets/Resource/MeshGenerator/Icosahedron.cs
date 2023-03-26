@@ -11,7 +11,7 @@ namespace BM.MeshGenerator
             List<Vector3> vertices = GetIcosahedronVertices();
             List<int> triangles = GetIcosahedronTriangles();
 
-            vertices = RotateTo(MakeNorthPole, vertices.AsReadOnly());
+            vertices = RotateTo(MakeNorthPole, vertices.AsReadOnly(), 0);
 
             return (vertices, triangles);
         }
@@ -67,7 +67,7 @@ namespace BM.MeshGenerator
             return triangles;
         }
 
-        public static List<Vector3> RotateTo(Func<Vector3, Quaternion> makeRotation, ReadOnlyCollection<Vector3> vertices, in int standardVertexIndex = 0)
+        public static List<Vector3> RotateTo(Func<Vector3, Quaternion> makeRotation, ReadOnlyCollection<Vector3> vertices, in int standardVertexIndex)
         {
             Quaternion rotation = makeRotation(vertices[standardVertexIndex]);
 
@@ -82,12 +82,7 @@ namespace BM.MeshGenerator
 
         public static Quaternion MakeNorthPole(Vector3 position)
         {
-            // 회전 각도 계산
-            float angleX = Mathf.Acos(Vector3.Dot(Vector3.right, position)) * Mathf.Rad2Deg;
-            float angleZ = Mathf.Atan2(position.z, position.x) * Mathf.Rad2Deg;
-
-            // Quaternion을 사용하여 회전 행렬 생성
-            return Quaternion.Euler(angleX, 0, -angleZ);
+            return Quaternion.FromToRotation(position.normalized, Vector3.up);
         }
     }
 }
