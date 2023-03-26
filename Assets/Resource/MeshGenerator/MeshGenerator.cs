@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BM.MeshGenerator
 {
-    public sealed class MeshGenerator
+    public partial class MeshGenerator
     {
     }
 
