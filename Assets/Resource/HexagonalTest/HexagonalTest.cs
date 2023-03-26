@@ -42,7 +42,7 @@ namespace BM.MeshGenerator
 #if UNITY_EDITOR
         const float GIZMO_SPHERE_SIZE = 0.01f;
 
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             GUIStyle style = new GUIStyle();
             style.normal.textColor = Color.white;
