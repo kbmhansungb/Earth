@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -10,8 +11,7 @@ namespace BM.MeshGenerator
             List<Vector3> vertices = GetIcosahedronVertices();
             List<int> triangles = GetIcosahedronTriangles();
 
-            // 정이십면체의 꼭지점이 하늘을 바라보도록 수정합니다.
-            vertices = MakeNorthPole(vertices.AsReadOnly());
+            vertices = RotateTo(MakeNorthPole, vertices.AsReadOnly());
 
             return (vertices, triangles);
         }
@@ -67,24 +67,27 @@ namespace BM.MeshGenerator
             return triangles;
         }
 
-        public static List<Vector3> MakeNorthPole(ReadOnlyCollection<Vector3> vertices, in int standardVertexIndex = 0)
+        public static List<Vector3> RotateTo(Func<Vector3, Quaternion> makeRotation, ReadOnlyCollection<Vector3> vertices, in int standardVertexIndex = 0)
         {
+            Quaternion rotation = makeRotation(vertices[standardVertexIndex]);
+
+            // 각 정점에 회전 적용 후 반환합니다.
             List<Vector3> newVertices = new List<Vector3>(vertices.Count);
-
-            // 회전 각도 계산
-            float angleX = Mathf.Acos(Vector3.Dot(Vector3.right, vertices[standardVertexIndex])) * Mathf.Rad2Deg;
-            float angleZ = Mathf.Atan2(vertices[standardVertexIndex].z, vertices[standardVertexIndex].x) * Mathf.Rad2Deg;
-
-            // Quaternion을 사용하여 회전 행렬 생성
-            Quaternion rotation = Quaternion.Euler(angleX, 0, -angleZ);
-
-            // 각 정점에 회전 적용
             for (int i = 0; i < vertices.Count; i++)
             {
-                newVertices[i] = rotation * vertices[i];
+                newVertices.Add(rotation * vertices[i]);
             }
-
             return newVertices;
+        }
+
+        public static Quaternion MakeNorthPole(Vector3 position)
+        {
+            // 회전 각도 계산
+            float angleX = Mathf.Acos(Vector3.Dot(Vector3.right, position)) * Mathf.Rad2Deg;
+            float angleZ = Mathf.Atan2(position.z, position.x) * Mathf.Rad2Deg;
+
+            // Quaternion을 사용하여 회전 행렬 생성
+            return Quaternion.Euler(angleX, 0, -angleZ);
         }
     }
 }
