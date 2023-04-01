@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI.MessageBox;
 
-namespace BM.MeshGenerator
+namespace MeshGenerator
 {
     // MeshGenerator에 의해 생성된 Mesh를 MeshFillter및 MeshRenderer에 적용하는 역활을 합니다.
     public class HexagonalTest : MonoBehaviour

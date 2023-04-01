@@ -5,9 +5,8 @@ using System.Collections.ObjectModel;
 using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
-namespace BM.MeshGenerator
+namespace MeshGenerator
 {
     public class Model
     {

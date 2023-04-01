@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-namespace BM.MeshGenerator
+namespace MeshGenerator
 {
     public class Line
     {
@@ -59,12 +59,12 @@ namespace BM.MeshGenerator
             m_reversedLine.m_reversedLine = this;
             m_reversedLine.m_data = m_data;
 
-            m_data.Begin.Lines.Add(this);
-            m_data.End.Lines.Add(this);
+            m_data.Begin.m_lines.Add(this);
+            m_data.End.m_lines.Add(this);
 
             // 버텍스에 line을 추가합니다.
-            begin.Lines.Add(this);
-            end.Lines.Add(this);
+            begin.m_lines.Add(this);
+            end.m_lines.Add(this);
         }
     }
 } 

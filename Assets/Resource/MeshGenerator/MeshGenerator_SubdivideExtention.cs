@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BM.MeshGenerator
+namespace MeshGenerator
 {
     public static class MeshGenerator_SubdivideExtention
     {

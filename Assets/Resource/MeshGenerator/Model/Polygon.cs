@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-namespace BM.MeshGenerator
+namespace MeshGenerator
 {
     public class Polygon
     {
@@ -20,7 +20,7 @@ namespace BM.MeshGenerator
                 m_vertices.Add(line.Begin);
                 m_lines.Add(line);
 
-                line.Begin.Polygons.Add(this);
+                line.Begin.m_polygons.Add(this);
                 line.Right = this;
             }
         }

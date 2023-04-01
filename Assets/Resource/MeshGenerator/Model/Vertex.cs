@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-namespace BM.MeshGenerator
+namespace MeshGenerator
 {
     public class Vertex
     {
-        public Vector3 Position;
+        private Vector3 m_position;
 
-        public List<Line> Lines = new List<Line>();
-        public List<Polygon> Polygons = new List<Polygon>();
+        internal List<Line> m_lines = new List<Line>();
+        internal List<Polygon> m_polygons = new List<Polygon>();
+
+        public Vector3 Position { get=>m_position; set => m_position = value; }
+        public ReadOnlyCollection<Line> Lines { get => m_lines.AsReadOnly(); }
+        public ReadOnlyCollection<Polygon> Polygons { get=>m_polygons.AsReadOnly(); }
 
         public Vertex(Vector3 position)
         {
-            this.Position = position;
+            this.m_position = position;
         }
     }
 } 
