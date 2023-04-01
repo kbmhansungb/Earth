@@ -9,6 +9,10 @@ namespace MeshGenerator.Geometry
 {
     public class LineTest
     {
+        /// <summary>
+        /// 라인의 Begin이 반전된 라인의 End와 같은지 검사하고
+        /// 라인의 End가 반전된 라인의 Begin과 같은지 검사합니다.
+        /// </summary>
         [Test]
         public void IsReversedLineVertexEqual()
         {
