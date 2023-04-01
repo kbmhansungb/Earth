@@ -9,8 +9,8 @@ namespace MeshGenerator.Geometry
     {
         private Vector3 m_position;
 
-        internal List<Line> m_lines = new List<Line>();
-        internal List<Polygon> m_polygons = new List<Polygon>();
+        private List<Line> m_lines = new List<Line>();
+        private List<Polygon> m_polygons = new List<Polygon>();
 
         public Vector3 Position { get=>m_position; set => m_position = value; }
         public ReadOnlyCollection<Line> Lines { get => m_lines.AsReadOnly(); }
@@ -19,6 +19,26 @@ namespace MeshGenerator.Geometry
         public Vertex(Vector3 position)
         {
             this.m_position = position;
+        }
+
+        public void AddLine(Line line)
+        {
+            m_lines.Add(line);
+        }
+
+        public void RemoveLine(Line line)
+        {
+            m_lines.Remove(line);
+        }
+
+        public void AddPolygon(Polygon polygon)
+        {
+            m_polygons.Add(polygon);
+        }
+
+        public void RemovePolygon(Polygon polygon)
+        {
+            m_polygons.Remove(polygon);
         }
     }
 } 

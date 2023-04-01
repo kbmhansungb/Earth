@@ -38,8 +38,22 @@ namespace MeshGenerator.Geometry
             m_reversedLine.m_reversedLine = this;
 
             // Vertex에 연결된 라인을 추가합니다.
-            m_begin.m_lines.Add(this);
-            m_end.m_lines.Add(this);
+            m_begin.AddLine(this);
+            m_end.AddLine(this);
+        }
+
+        public void SetPolygon(Polygon polygon, bool isRight = true)
+        {
+            if (isRight)
+            {
+                m_right = polygon;
+                m_reversedLine.m_left = polygon;
+            }
+            else
+            {
+                m_left = polygon;
+                m_reversedLine.m_right = polygon;
+            }
         }
     }
 } 
