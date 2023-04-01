@@ -34,11 +34,8 @@ namespace MeshGenerator.Geometry
         {
             (Line line, Vertex begin, Vertex end) = CretaeLine();
 
-            Assert.IsTrue(begin.Lines.Count == 1, "Begin vertex is not add correctly");
-            Assert.IsTrue(begin.Lines[0] == line, "Begin vertex is not add line.");
-
-            Assert.IsTrue(end.Lines.Count == 1, "End vertex is not add correctly");
-            Assert.IsTrue(end.Lines[0] == line, "End vertex is not add line.");
+            Assert.IsTrue(begin.Lines[0] == line && begin.Lines.Count == 1, "Line are not added correctly to begin vertex.");
+            Assert.IsTrue(end.Lines[0] == line && end.Lines.Count == 1, "Line are not added correctly to end vertex.");
         }
 
         /// <summary>
