@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI.MessageBox;
+using MeshGenerator.Geometry;
 
 namespace MeshGenerator
 {
