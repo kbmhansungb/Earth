@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-namespace MeshGenerator.Model
+namespace MeshGenerator.Geometry
 {
     /// <summary>
     /// A -> B로 가는 라인과 B -> A로 가는 라인은 반전된 라인입니다.

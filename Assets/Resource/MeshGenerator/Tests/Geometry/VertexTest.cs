@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 
 
-namespace MeshGenerator
+namespace MeshGenerator.Geometry
 {
     /// <summary>
     /// 버택스를 생성하고 포지션이 제대로 할당되었는지 검사합니다.

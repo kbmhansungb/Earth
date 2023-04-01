@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-namespace MeshGenerator.Model
+namespace MeshGenerator.Geometry
 {
     public class Polygon
     {
