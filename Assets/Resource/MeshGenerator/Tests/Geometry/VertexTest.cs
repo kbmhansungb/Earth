@@ -9,6 +9,9 @@ namespace MeshGenerator.Geometry
 {
     public class VertexTest
     {
+        /// <summary>
+        /// 버택스를 생성하고 포지션이 일치하는지 검사합니다.
+        /// </summary>
         [Test]
         public void IsInstancedVertexPositionEqual()
         {
