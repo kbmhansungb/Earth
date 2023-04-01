@@ -25,6 +25,22 @@ namespace MeshGenerator.Geometry
         }
 
         /// <summary>
+        /// 생성된 버택스에 라인이 추가되었는지 검사합니다.
+        /// 기본 라인은 버택스에 추가되어야 하지만, 반전된 라인은 버택스에 추가되면 안됩니다.
+        /// </summary>
+        [Test]
+        public void IsVertexHaveLine()
+        {
+            (Line line, Vertex begin, Vertex end) = CretaeLine();
+
+            Assert.IsTrue(begin.Lines.Count == 1, "Begin vertex is not add correctly");
+            Assert.IsTrue(begin.Lines[0] == line, "Begin vertex is not add line.");
+
+            Assert.IsTrue(end.Lines.Count == 1, "End vertex is not add correctly");
+            Assert.IsTrue(end.Lines[0] == line, "End vertex is not add line.");
+        }
+
+        /// <summary>
         /// 반전된 라인이 생성되었는지 검사하고,
         /// 그리고 반전된 라인의 반전이 다시 원래의 라인인지 검사합니다.
         /// </summary>
