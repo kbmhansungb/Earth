@@ -10,6 +10,7 @@ namespace MeshGenerator.Geometry
     /// </summary>
     public class Line
     {
+        // false일 경우 Line이 반전되었음을 의미합니다.
         private bool m_isDefault;
         private Line m_reversedLine;
 
@@ -50,13 +51,13 @@ namespace MeshGenerator.Geometry
 
         public Line(Vertex begin, Vertex end)
         {
-            m_isDefault = false;
+            m_isDefault = true;
 
             m_data.Begin = begin;
             m_data.End = end;
 
             m_reversedLine = new Line();
-            m_reversedLine.m_isDefault = true;
+            m_reversedLine.m_isDefault = false;
             m_reversedLine.m_reversedLine = this;
             m_reversedLine.m_data = m_data;
 
