@@ -26,6 +26,9 @@ namespace MeshGenerator.Geometry
             Assert.IsTrue(polygon.Lines[2] == lines[2], "Line 2 is not equal.");
         }
 
+        /// <summary>
+        /// 버택스와, 라인에 폴리곤이 추가되었는지 검사합니다.
+        /// </summary>
         [Test]
         public void IsVerticiesAndLinesHavePolygon()
         {
