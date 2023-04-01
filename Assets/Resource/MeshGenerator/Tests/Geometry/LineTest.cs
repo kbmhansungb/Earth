@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -49,6 +50,9 @@ namespace MeshGenerator.Geometry
         {
             (Line line, _, _) = CretaeLine();
 
+            Assert.IsTrue(line.IsReversed == false, "Default line is not reversed line.");
+
+            Assert.IsTrue(line.ReversedLine.IsReversed == true, "Reversed line is not reversed.");
             Assert.IsNotNull(line.ReversedLine, "Reversed line is not creat.");
             Assert.IsTrue(line == line.ReversedLine.ReversedLine, "Reversed line is not initialized.");
         }

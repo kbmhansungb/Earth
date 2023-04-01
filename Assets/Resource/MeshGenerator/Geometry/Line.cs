@@ -5,68 +5,41 @@ using UnityEngine;
 
 namespace MeshGenerator.Geometry
 {
-    /// <summary>
-    /// A -> B로 가는 라인과 B -> A로 가는 라인은 반전된 라인입니다.
-    /// </summary>
     public class Line
     {
-        // false일 경우 Line이 반전되었음을 의미합니다.
-        private bool m_isDefault;
+        private bool m_isReversed;
         private Line m_reversedLine;
 
-        private class Data
-        {
-            public Vertex Begin;
-            public Vertex End;
+        private Vertex m_begin;
+        private Vertex m_end;
 
-            public Polygon Left;
-            public Polygon Right;
-        }
-        private Data m_data = new Data();
+        internal Polygon m_left;
+        internal Polygon m_right;
 
+        public bool IsReversed { get => m_isReversed; }
         public Line ReversedLine { get => m_reversedLine; }
-        public Vertex Begin { get => m_isDefault ? m_data.Begin : m_data.End; }
-        public Vertex End { get => m_isDefault ? m_data.End : m_data.Begin; }
-        public Polygon Left { 
-            get => m_isDefault ? m_data.Left : m_data.Right; 
-            set { 
-                if (m_isDefault)
-                    m_data.Left = value;
-                else
-                    m_data.Right = value;
-            }
-        }
-        public Polygon Right { 
-            get => m_isDefault ? m_data.Right : m_data.Left;
-            set
-            {
-                if (m_isDefault)
-                    m_data.Right = value;
-                else
-                    m_data.Left = value;
-            }
-        }
+        public Vertex Begin { get => m_begin; }
+        public Vertex End { get => m_end; }
+        public Polygon Left { get => m_left; }
+        public Polygon Right { get => m_right; }
 
         private Line() { }
 
         public Line(Vertex begin, Vertex end)
         {
-            m_isDefault = true;
-
-            m_data.Begin = begin;
-            m_data.End = end;
-
+            m_isReversed = false;
+            m_begin = begin;
+            m_end = end;
             m_reversedLine = new Line();
-            m_reversedLine.m_isDefault = false;
+
+            m_reversedLine.m_isReversed = true;
+            m_reversedLine.m_begin = end;
+            m_reversedLine.m_end = begin;
             m_reversedLine.m_reversedLine = this;
-            m_reversedLine.m_data = m_data;
 
-            m_data.Begin.m_lines.Add(this);
-            m_data.End.m_lines.Add(this);
-
-            // 버텍스에 line을 추가합니다.
-            begin.m_lines.Add(this);
-            end.m_lines.Add(this);
+            // Vertex에 연결된 라인을 추가합니다.
+            m_begin.m_lines.Add(this);
+            m_end.m_lines.Add(this);
         }
     }
 } 

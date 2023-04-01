@@ -21,7 +21,7 @@ namespace MeshGenerator.Geometry
                 m_lines.Add(line);
 
                 line.Begin.m_polygons.Add(this);
-                line.Right = this;
+                line.m_right = this;
             }
         }
     }
