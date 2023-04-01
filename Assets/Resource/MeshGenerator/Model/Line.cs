@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-namespace MeshGenerator
+namespace MeshGenerator.Model
 {
+    /// <summary>
+    /// A -> B로 가는 라인과 B -> A로 가는 라인은 반전된 라인입니다.
+    /// </summary>
     public class Line
     {
         private bool m_isDefault;
         private Line m_reversedLine;
 
-        // A -> B로 가는 라인과 B -> A로 가는 라인은 유사하지만, 왼쪽과 오른쪽 폴리곤이 반전됩니다.
-        // 따라서 기본 상태가 아니면 반전된 라인입니다.
         private class Data
         {
             public Vertex Begin;
