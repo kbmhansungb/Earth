@@ -8,37 +8,37 @@ namespace MeshGenerator
     {
         public static Mesh SubdivideMesh(this MeshGenerator generator, Mesh mesh)
         {
-            Vector3[] originalVertices = mesh.vertices;
+            Vector3[] originalPoints = mesh.vertices;
             int[] originalTriangles = mesh.triangles;
 
-            List<Vector3> newVertices = new List<Vector3>(originalVertices);
+            List<Vector3> newPoints = new List<Vector3>(originalPoints);
             List<int> newTriangles = new List<int>();
 
             for (int i = 0; i < originalTriangles.Length; i += 3)
             {
-                SubdivideTriangle(ref newVertices, ref newTriangles, originalTriangles[i], originalTriangles[i + 1], originalTriangles[i + 2]);
+                SubdivideTriangle(ref newPoints, ref newTriangles, originalTriangles[i], originalTriangles[i + 1], originalTriangles[i + 2]);
             }
 
             Mesh newMesh = new Mesh();
-            newMesh.vertices = newVertices.ToArray();
+            newMesh.vertices = newPoints.ToArray();
             newMesh.triangles = newTriangles.ToArray();
             newMesh.RecalculateNormals();
 
             return newMesh;
         }
 
-        private static void SubdivideTriangle(ref List<Vector3> vertices, ref List<int> triangles, int a, int b, int c)
+        private static void SubdivideTriangle(ref List<Vector3> points, ref List<int> triangles, int a, int b, int c)
         {
-            Vector3 ab = (vertices[a] + vertices[b]) * 0.5f;
-            Vector3 bc = (vertices[b] + vertices[c]) * 0.5f;
-            Vector3 ca = (vertices[c] + vertices[a]) * 0.5f;
+            Vector3 ab = (points[a] + points[b]) * 0.5f;
+            Vector3 bc = (points[b] + points[c]) * 0.5f;
+            Vector3 ca = (points[c] + points[a]) * 0.5f;
 
-            int abIndex = vertices.Count;
-            vertices.Add(ab);
-            int bcIndex = vertices.Count;
-            vertices.Add(bc);
-            int caIndex = vertices.Count;
-            vertices.Add(ca);
+            int abIndex = points.Count;
+            points.Add(ab);
+            int bcIndex = points.Count;
+            points.Add(bc);
+            int caIndex = points.Count;
+            points.Add(ca);
 
             triangles.Add(a);
             triangles.Add(abIndex);

@@ -10,56 +10,56 @@ namespace MeshGenerator.Geometry
 {
     public class Model
     {
-        private List<Vertex> m_vertices = new List<Vertex>();
+        private List<Point> m_points = new List<Point>();
         private List<Line> m_lines = new List<Line>();
         private List<Polygon> m_polygons = new List<Polygon>();
 
-        public ReadOnlyCollection<Vertex> Vertices { get => m_vertices.AsReadOnly(); }
+        public ReadOnlyCollection<Point> Points { get => m_points.AsReadOnly(); }
         public ReadOnlyCollection<Line> Lines { get => m_lines.AsReadOnly(); }
         public ReadOnlyCollection<Polygon> Polygons { get => m_polygons.AsReadOnly(); }
 
         /*
-         *  Vertex
+         *  Point
          */
 
         // 모델에 버텍스를 추가합니다.
-        public Vertex AddVertex(Vector3 position)
+        public Point AddPoint(Vector3 position)
         {
-            var newVertex = new Vertex(position);
-            m_vertices.Add(newVertex);
-            return newVertex;
+            var newPoint = new Point(position);
+            m_points.Add(newPoint);
+            return newPoint;
         }
 
         // 모델에 버텍스들을 추가합니다.
-        public List<Vertex> AddVertices(ReadOnlyCollection<Vector3> vertices)
+        public List<Point> AddPoints(ReadOnlyCollection<Vector3> points)
         {
-            var newVertices = new List<Vertex>(vertices.Count);
-            for (int index = 0; index < vertices.Count; index++)
+            var newPoints = new List<Point>(points.Count);
+            for (int index = 0; index < points.Count; index++)
             {
-                newVertices.Add(AddVertex(vertices[index]));
+                newPoints.Add(AddPoint(points[index]));
             }
-            return newVertices;
+            return newPoints;
         }
 
         /*
          *  Line
          */
 
-        public Line AddLine(Vertex Begin, Vertex End)
+        public Line AddLine(Point Begin, Point End)
         {
             Line newLine = new Line(Begin, End);
             m_lines.Add(newLine);
             return newLine;
         }
 
-        public Line AddLine(Vector3 beginPosition, Vector3 endPosition, Func<Vector3, Vertex> AddVertex)
+        public Line AddLine(Vector3 beginPosition, Vector3 endPosition, Func<Vector3, Point> AddPoint)
         {
-            Vertex begin = AddVertex(beginPosition);
-            Vertex end = AddVertex(endPosition);
+            Point begin = AddPoint(beginPosition);
+            Point end = AddPoint(endPosition);
             return AddLine(begin, end);
         }
 
-        public Line GetLine(Vertex A, Vertex B)
+        public Line GetLine(Point A, Point B)
         {
             foreach (var line in m_lines)
             {
@@ -87,20 +87,20 @@ namespace MeshGenerator.Geometry
             return polygon;
         }
 
-        public List<Polygon> AddPolygons(List<Vector3> verticesData, List<int> trianglesData)
+        public List<Polygon> AddPolygons(List<Vector3> pointsData, List<int> trianglesData)
         {
-            List<Vertex> vertices = AddVertices(verticesData.AsReadOnly());
+            List<Point> points = AddPoints(pointsData.AsReadOnly());
             
             List<Polygon> polygons = new List<Polygon>(trianglesData.Count / 3);
             for (int triangleIndex = 0; triangleIndex < trianglesData.Count; triangleIndex += 3)
             {
-                Vertex Vertex1 = vertices[trianglesData[triangleIndex + 0]];
-                Vertex Vertex2 = vertices[trianglesData[triangleIndex + 1]];
-                Vertex Vertex3 = vertices[trianglesData[triangleIndex + 2]];
+                Point Point1 = points[trianglesData[triangleIndex + 0]];
+                Point Point2 = points[trianglesData[triangleIndex + 1]];
+                Point Point3 = points[trianglesData[triangleIndex + 2]];
 
-                Line line1 = AddLine(Vertex1, Vertex2);
-                Line line2 = AddLine(Vertex2, Vertex3);
-                Line line3 = AddLine(Vertex3, Vertex1);
+                Line line1 = AddLine(Point1, Point2);
+                Line line2 = AddLine(Point2, Point3);
+                Line line3 = AddLine(Point3, Point1);
 
                 Polygon polygon = AddPolygon(new Line[] { line1, line2, line3 });
             }

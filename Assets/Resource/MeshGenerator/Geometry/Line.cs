@@ -10,22 +10,22 @@ namespace MeshGenerator.Geometry
         private bool m_isReversed;
         private Line m_reversedLine;
 
-        private Vertex m_begin;
-        private Vertex m_end;
+        private Point m_begin;
+        private Point m_end;
 
         internal Polygon m_left;
         internal Polygon m_right;
 
         public bool IsReversed { get => m_isReversed; }
         public Line ReversedLine { get => m_reversedLine; }
-        public Vertex Begin { get => m_begin; }
-        public Vertex End { get => m_end; }
+        public Point Begin { get => m_begin; }
+        public Point End { get => m_end; }
         public Polygon Left { get => m_left; }
         public Polygon Right { get => m_right; }
 
         private Line() { }
 
-        public Line(Vertex begin, Vertex end)
+        public Line(Point begin, Point end)
         {
             m_isReversed = false;
             m_begin = begin;
@@ -37,7 +37,7 @@ namespace MeshGenerator.Geometry
             m_reversedLine.m_end = begin;
             m_reversedLine.m_reversedLine = this;
 
-            // Vertex에 연결된 라인을 추가합니다.
+            // Point에 연결된 라인을 추가합니다.
             m_begin.AddLine(this);
             m_end.AddLine(this);
         }

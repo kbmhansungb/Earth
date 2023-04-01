@@ -7,17 +7,17 @@ using UnityEngine.TestTools;
 
 namespace MeshGenerator.Geometry
 {
-    public class VertexTest
+    public class PointTest
     {
         /// <summary>
-        /// 버택스를 생성하고 포지션이 일치하는지 검사합니다.
+        /// 점을 생성하고 점의 좌표가 일치하는지 검사합니다.
         /// </summary>
         [Test]
-        public void IsInstancedVertexPositionEqual()
+        public void IsInstancedPointPositionEqual()
         {
             Vector3 vertexPosition = new Vector3(1.0f, 0.0f, 0.0f);
-            Vertex vertex = new Vertex(vertexPosition);
-            Assert.IsTrue(vertex.Position == vertexPosition, "Vertex position is different.");
+            Point vertex = new Point(vertexPosition);
+            Assert.IsTrue(vertex.Position == vertexPosition, "Point position is different.");
         }
     }
 }

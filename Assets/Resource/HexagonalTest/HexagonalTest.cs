@@ -21,7 +21,7 @@ namespace MeshGenerator
             Model model = new Model();
 
             var icosahedron = Icosahedron.GetIcosahedron();
-            model.AddPolygons(icosahedron.vertices, icosahedron.triangles);
+            model.AddPolygons(icosahedron.points, icosahedron.triangles);
 
             //var icosahedron = meshGenerator.CreateIcosahedron();
             //var subdividiedIcosahedron = meshGenerator.SubdivideMesh(icosahedron);
@@ -47,10 +47,10 @@ namespace MeshGenerator
             GUIStyle style = new GUIStyle();
             style.normal.textColor = Color.white;
 
-            for (int index = 0; index < m_model.Vertices.Count; index++)
+            for (int index = 0; index < m_model.Points.Count; index++)
             {
                 // 기즈모를 그리고 텍스트를 작성합니다.
-                Vector3 worldPosition = transform.TransformPoint(m_model.Vertices[index].Position);
+                Vector3 worldPosition = transform.TransformPoint(m_model.Points[index].Position);
                 Gizmos.DrawSphere(worldPosition, GIZMO_SPHERE_SIZE);
                 Vector3 worldTextPosition = worldPosition + new Vector3(GIZMO_SPHERE_SIZE, 0.0f, 0.0f);
                 Handles.Label(worldTextPosition, $"index {index}", style);

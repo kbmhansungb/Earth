@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MeshGenerator.Geometry
 {
-    public class Vertex
+    public class Point
     {
         private Vector3 m_position;
 
@@ -16,7 +16,7 @@ namespace MeshGenerator.Geometry
         public ReadOnlyCollection<Line> Lines { get => m_lines.AsReadOnly(); }
         public ReadOnlyCollection<Polygon> Polygons { get=>m_polygons.AsReadOnly(); }
 
-        public Vertex(Vector3 position)
+        public Point(Vector3 position)
         {
             this.m_position = position;
         }

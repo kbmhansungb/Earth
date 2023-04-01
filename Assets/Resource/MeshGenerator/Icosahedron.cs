@@ -6,22 +6,22 @@ namespace MeshGenerator
 {
     public static class Icosahedron
     {
-        public static (List<Vector3> vertices, List<int> triangles) GetIcosahedron()
+        public static (List<Vector3> points, List<int> triangles) GetIcosahedron()
         {
-            List<Vector3> vertices = GetIcosahedronVertices();
+            List<Vector3> points = GetIcosahedronPoints();
             List<int> triangles = GetIcosahedronTriangles();
 
-            vertices = RotateTo(MakeNorthPole, vertices.AsReadOnly(), 0);
+            points = RotateTo(MakeNorthPole, points.AsReadOnly(), 0);
 
-            return (vertices, triangles);
+            return (points, triangles);
         }
 
-        public static List<Vector3> GetIcosahedronVertices()
+        public static List<Vector3> GetIcosahedronPoints()
         {
             // Golden Ratio
             float t = (1f + Mathf.Sqrt(5f)) / 2f;
 
-            List<Vector3> vertices = new List<Vector3> {
+            List<Vector3> points = new List<Vector3> {
                 new Vector3(-1,  t,  0).normalized,
                 new Vector3( 1,  t,  0).normalized,
                 new Vector3(-1, -t,  0).normalized,
@@ -36,7 +36,7 @@ namespace MeshGenerator
                 new Vector3(-t,  0,  1).normalized
             };
 
-            return vertices;
+            return points;
         }
 
         public static List<int> GetIcosahedronTriangles()
@@ -67,17 +67,17 @@ namespace MeshGenerator
             return triangles;
         }
 
-        public static List<Vector3> RotateTo(Func<Vector3, Quaternion> makeRotation, ReadOnlyCollection<Vector3> vertices, in int standardVertexIndex)
+        public static List<Vector3> RotateTo(Func<Vector3, Quaternion> makeRotation, ReadOnlyCollection<Vector3> points, in int standardPointIndex)
         {
-            Quaternion rotation = makeRotation(vertices[standardVertexIndex]);
+            Quaternion rotation = makeRotation(points[standardPointIndex]);
 
             // 각 정점에 회전 적용 후 반환합니다.
-            List<Vector3> newVertices = new List<Vector3>(vertices.Count);
-            for (int i = 0; i < vertices.Count; i++)
+            List<Vector3> newPoints = new List<Vector3>(points.Count);
+            for (int i = 0; i < points.Count; i++)
             {
-                newVertices.Add(rotation * vertices[i]);
+                newPoints.Add(rotation * points[i]);
             }
-            return newVertices;
+            return newPoints;
         }
 
         public static Quaternion MakeNorthPole(Vector3 position)

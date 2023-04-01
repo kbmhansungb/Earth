@@ -14,13 +14,13 @@ namespace MeshGenerator.Geometry
         /// 모델에서 버택스를 생성되는지 검사합니다.
         /// </summary>
         [Test]
-        public void TestCreateVertex()
+        public void TestCreatePoint()
         {
             Model model = new Model();
 
-            Vertex vertex = model.AddVertex(Vector3.zero);
+            Point vertex = model.AddPoint(Vector3.zero);
 
-            Assert.IsTrue(model.Vertices[0] == vertex && model.Vertices.Count == 1, "Vertex is not added correctly to model.");
+            Assert.IsTrue(model.Points[0] == vertex && model.Points.Count == 1, "Point is not added correctly to model.");
         }
 
         /// <summary>
@@ -31,8 +31,8 @@ namespace MeshGenerator.Geometry
         {
             Model model = new Model();
 
-            Vertex vertex1 = model.AddVertex(Vector3.zero);
-            Vertex vertex2 = model.AddVertex(Vector3.up);
+            Point vertex1 = model.AddPoint(Vector3.zero);
+            Point vertex2 = model.AddPoint(Vector3.up);
 
             Line line = model.AddLine(vertex1, vertex2);
 
@@ -47,9 +47,9 @@ namespace MeshGenerator.Geometry
         {
             Model model = new Model();
 
-            Vertex vertex1 = model.AddVertex(Vector3.zero);
-            Vertex vertex2 = model.AddVertex(Vector3.up);
-            Vertex vertex3 = model.AddVertex(Vector3.right);
+            Point vertex1 = model.AddPoint(Vector3.zero);
+            Point vertex2 = model.AddPoint(Vector3.up);
+            Point vertex3 = model.AddPoint(Vector3.right);
 
             Line line1 = model.AddLine(vertex1, vertex2);
             Line line2 = model.AddLine(vertex2, vertex3);
