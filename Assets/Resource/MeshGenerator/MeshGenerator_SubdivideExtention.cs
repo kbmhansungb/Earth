@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MeshGenerator
+namespace ModelGenerator
 {
     public static class MeshGenerator_SubdivideExtention
     {
-        public static Mesh SubdivideMesh(this MeshGenerator generator, Mesh mesh)
+        public static Mesh SubdivideMesh(this ModelGenerator generator, Mesh mesh)
         {
             Vector3[] originalPoints = mesh.vertices;
             int[] originalTriangles = mesh.triangles;

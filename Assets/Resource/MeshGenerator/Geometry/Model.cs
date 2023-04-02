@@ -6,7 +6,7 @@ using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace MeshGenerator.Geometry
+namespace ModelGenerator.Geometry
 {
     public class Model
     {

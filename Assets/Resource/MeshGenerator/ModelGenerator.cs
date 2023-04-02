@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
-using MeshGenerator.Geometry;
+using ModelGenerator.Geometry;
 
-namespace MeshGenerator
+namespace ModelGenerator
 {
-    public partial class MeshGenerator
+    public class ModelGenerator
     {
     }
 
     public static class MeshGenerator_Extention
     {
-        public static Model MakeModel(this MeshGenerator generator, Mesh mesh)
+        public static Model MakeModel(this ModelGenerator generator, Mesh mesh)
         {
             var model = new Model();
 
@@ -37,7 +37,7 @@ namespace MeshGenerator
             return model;
         }
 
-        public static Mesh MakeMesh(this MeshGenerator generator, Model model)
+        public static Mesh MakeMesh(this ModelGenerator generator, Model model)
         {
             // 테스트를 위한 간단한 모델
             List<Vector3> points = new List<Vector3>();

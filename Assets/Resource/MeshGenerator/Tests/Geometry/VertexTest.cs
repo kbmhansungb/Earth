@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 
 
-namespace MeshGenerator.Geometry
+namespace ModelGenerator.Geometry
 {
     public class PointTest
     {

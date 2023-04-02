@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-namespace MeshGenerator.Geometry
+namespace ModelGenerator.Geometry
 {
     public class Point
     {

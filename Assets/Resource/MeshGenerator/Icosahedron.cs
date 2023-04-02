@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
-namespace MeshGenerator
+namespace ModelGenerator
 {
     public static class Icosahedron
     {
