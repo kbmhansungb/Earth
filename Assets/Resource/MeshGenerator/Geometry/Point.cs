@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -5,7 +6,7 @@ using UnityEngine;
 
 namespace ModelGenerator.Geometry
 {
-    public class Point
+    public class Point : IComparable<Point> 
     {
         private Vector3 m_position;
 
@@ -39,6 +40,11 @@ namespace ModelGenerator.Geometry
         public void RemovePolygon(Polygon polygon)
         {
             m_polygons.Remove(polygon);
+        }
+
+        public int CompareTo(Point other)
+        {
+            return this.GetHashCode() - other.GetHashCode();
         }
     }
 } 

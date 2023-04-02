@@ -22,15 +22,33 @@ namespace ModelGenerator.Geometry
          *  Point
          */
 
-        // 모델에 버텍스를 추가합니다.
+        /// <summary>
+        /// 모델에 점을 추가합니다.
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public void AddPoint(Point point)
+        {
+            m_points.Add(point);
+        }
+
+        /// <summary>
+        /// 모델에 점을 추가합니다.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
         public Point AddPoint(Vector3 position)
         {
             var newPoint = new Point(position);
-            m_points.Add(newPoint);
+            AddPoint(newPoint);
             return newPoint;
         }
 
-        // 모델에 버텍스들을 추가합니다.
+        /// <summary>
+        /// 모델에 점을 추가합니다.
+        /// </summary>
+        /// <param name="points"></param>
+        /// <returns></returns>
         public List<Point> AddPoints(ReadOnlyCollection<Vector3> points)
         {
             var newPoints = new List<Point>(points.Count);

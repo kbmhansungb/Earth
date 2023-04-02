@@ -14,19 +14,17 @@ namespace ModelGenerator
     {
         [SerializeField] private MeshFilter m_meshFilter;
         private Model m_model;
-        private Mesh m_mesh;
 
         private void OnValidate()
         {
             var icosahedronGenerator = new IcosahedronGenerator();
-            var model = icosahedronGenerator.CreateIcosahedron();
+            m_model = icosahedronGenerator.CreateIcosahedron();
 
             var meshGenerator = new ModelGenerator();
-            var newMesh = meshGenerator.MakeMesh(model);
+            m_meshFilter.mesh = meshGenerator.MakeMesh(m_model);
 
-            m_meshFilter.mesh = newMesh;
-            m_model = model;
-            m_mesh = newMesh;
+            var subdivisionGenerator = new SubdivisionGenerator();
+            m_model = subdivisionGenerator.CreateSubdivision(m_model);
         }
 
 #if UNITY_EDITOR
