@@ -20,11 +20,13 @@ namespace ModelGenerator
             var icosahedronGenerator = new IcosahedronGenerator();
             m_model = icosahedronGenerator.CreateIcosahedron();
 
-            var meshGenerator = new ModelGenerator();
-            m_meshFilter.mesh = meshGenerator.MakeMesh(m_model);
-
             var subdivisionGenerator = new SubdivisionGenerator();
             m_model = subdivisionGenerator.CreateSubdivision(m_model);
+            m_model = subdivisionGenerator.CreateSubdivision(m_model);
+            m_model = subdivisionGenerator.CreateSubdivision(m_model);
+
+            var meshGenerator = new ModelGenerator();
+            m_meshFilter.mesh = meshGenerator.MakeMesh(m_model);
         }
 
 #if UNITY_EDITOR

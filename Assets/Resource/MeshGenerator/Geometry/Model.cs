@@ -63,18 +63,21 @@ namespace ModelGenerator.Geometry
          *  Line
          */
 
-        public Line AddLine(Point Begin, Point End)
+        public Line AddUniqueLine(Point begin, Point end)
         {
-            Line newLine = new Line(Begin, End);
-            m_lines.Add(newLine);
-            return newLine;
+            Line line = GetLine(begin, end);
+            if (line == null)
+            {
+                line = AddLine(begin, end);
+            }
+            return line;
         }
 
-        public Line AddLine(Vector3 beginPosition, Vector3 endPosition, Func<Vector3, Point> AddPoint)
+        public Line AddLine(Point begin, Point end)
         {
-            Point begin = AddPoint(beginPosition);
-            Point end = AddPoint(endPosition);
-            return AddLine(begin, end);
+            Line newLine = new Line(begin, end);
+            m_lines.Add(newLine);
+            return newLine;
         }
 
         public Line GetLine(Point A, Point B)
