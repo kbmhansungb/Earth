@@ -31,5 +31,16 @@ namespace ModelGenerator.Geometry
                 line.SetPolygon(this);
             }
         }
+
+        /// <summary>
+        /// 각 점의 평균을 반환합니다.
+        /// </summary>
+        /// <returns></returns>
+        public Vector3 GetCentroidPosition()
+        {
+            Vector3 position = Vector3.zero;
+            m_points.ForEach(p => position += p.Position);
+            return position / m_points.Count;
+        }
     }
 } 

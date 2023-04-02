@@ -27,7 +27,11 @@ namespace ModelGenerator
 
             var meshGenerator = new ModelGenerator();
             m_model.NormalizeSphere(Vector3.zero);
+
+            m_model = icosahedronGenerator.CreatePentaHexagonalSphere(m_model);
+
             m_meshFilter.mesh = meshGenerator.MakeMesh(m_model);
+            m_meshFilter.mesh.RecalculateNormals();
         }
 
 #if UNITY_EDITOR

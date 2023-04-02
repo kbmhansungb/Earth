@@ -101,6 +101,25 @@ namespace ModelGenerator.Geometry
          *  Polygon
          */
 
+        public Polygon AddPolygon(Point p1, Point p2, Point p3, params Point[] points)
+        {
+            List<Point> newPoints = new List<Point>();
+            newPoints.Add(p1);
+            newPoints.Add(p2);
+            newPoints.Add(p3);
+            newPoints.AddRange(points);
+
+            List<Line> newLines = new List<Line>();
+            for (int index = 0; index < newPoints.Count; index++)
+            {
+                Point begin = newPoints[index];
+                Point end = newPoints[(index + 1) % newPoints.Count];
+                newLines.Add(AddUniqueLine(begin, end));
+            }
+
+            return AddPolygon(newLines);
+        }
+
         public Polygon AddPolygon(IEnumerable<Line> lines)
         {
             var polygon = new Polygon(lines);
@@ -159,6 +178,15 @@ namespace ModelGenerator.Geometry
         public void Rotate(Quaternion quaternion)
         {
             RotateEachPoint((point) => { return quaternion; });
+        }
+
+
+        /// <summary>
+        /// 각 면에 대해 지정된 작업을 수행합니다.
+        /// </summary>
+        public void EachPolygon(Action<Polygon> modifyPolygon)
+        {
+            m_polygons.ForEach(modifyPolygon);
         }
     }
 } 

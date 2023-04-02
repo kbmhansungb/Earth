@@ -37,9 +37,9 @@ namespace ModelGenerator.Geometry
             m_reversedLine.m_end = begin;
             m_reversedLine.m_reversedLine = this;
 
-            // Point에 연결된 라인을 추가합니다.
+            // 점을 출발지로 하는 선을 추가합니다.
             m_begin.AddLine(this);
-            m_end.AddLine(this);
+            m_end.AddLine(m_reversedLine);
         }
 
         public void SetPolygon(Polygon polygon, bool isRight = true)
