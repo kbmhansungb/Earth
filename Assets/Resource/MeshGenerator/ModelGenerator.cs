@@ -12,6 +12,14 @@ namespace ModelGenerator
 
     public static class ModelGeneratorExtention
     {
+
+        public static void NormalizeSphere(this Model model, Vector3 origin, float length = 1.0f)
+        {
+            model.EachPoint(point => {
+                point.Position = origin + (point.Position - origin).normalized * length;
+            });
+        }
+
         public static Model MakeModel(this ModelGenerator generator, Mesh mesh)
         {
             var model = new Model();
@@ -55,18 +63,6 @@ namespace ModelGenerator
             mesh.vertices = points.ToArray();
             mesh.triangles = triangles.ToArray();
             return mesh;
-        }
-
-        public static void normalizeSphere(this Mesh mesh, Vector3 origin, float length = 1.0f)
-        {
-            var points = mesh.vertices;
-            
-            for(int index = 0; index < points.Length; index++)
-            {
-                points[index] = origin + (points[index] - origin).normalized * length;
-            }
-
-            mesh.vertices = points;
         }
     }
 } 

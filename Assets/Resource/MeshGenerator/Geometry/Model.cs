@@ -133,24 +133,32 @@ namespace ModelGenerator.Geometry
          */
 
         /// <summary>
+        /// 각 점에 대해 지정된 작업을 수행합니다.
+        /// </summary>
+        public void EachPoint(Action<Point> modifyPoint)
+        {
+            m_points.ForEach(modifyPoint);
+        }
+
+        /// <summary>
+        /// 각 점에 회전을 구하여 적용시킵니다.
+        /// </summary>
+        /// <param name="getQuaternion"></param>
+        public void RotateEachPoint(Func<Point, Quaternion> getQuaternionFromPoint)
+        {
+            EachPoint(point =>
+            {
+                point.Position = getQuaternionFromPoint(point) * point.Position;
+            });
+        }
+
+        /// <summary>
         /// 모델을 회전시킵니다.
         /// </summary>
         /// <param name="quaternion">RotateEachPoint의 반환값으로 전달됩니다.</param>
         public void Rotate(Quaternion quaternion)
         {
             RotateEachPoint((point) => { return quaternion; });
-        }
-
-        /// <summary>
-        /// 각각의 점에 회전을 구하여 적용시킵니다.
-        /// </summary>
-        /// <param name="getQuaternion"></param>
-        public void RotateEachPoint(Func<Point, Quaternion> getQuaternionFromPoint)
-        {
-            foreach (var point in m_points)
-            {
-                point.Position = getQuaternionFromPoint(point) * point.Position;
-            }
         }
     }
 } 

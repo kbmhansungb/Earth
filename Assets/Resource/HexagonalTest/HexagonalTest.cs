@@ -26,6 +26,7 @@ namespace ModelGenerator
             m_model = subdivisionGenerator.CreateSubdivision(m_model);
 
             var meshGenerator = new ModelGenerator();
+            m_model.NormalizeSphere(Vector3.zero);
             m_meshFilter.mesh = meshGenerator.MakeMesh(m_model);
         }
 
@@ -34,17 +35,17 @@ namespace ModelGenerator
 
         private void OnDrawGizmosSelected()
         {
-            GUIStyle style = new GUIStyle();
-            style.normal.textColor = Color.white;
+            //GUIStyle style = new GUIStyle();
+            //style.normal.textColor = Color.white;
 
-            for (int index = 0; index < m_model.Points.Count; index++)
-            {
-                // 기즈모를 그리고 텍스트를 작성합니다.
-                Vector3 worldPosition = transform.TransformPoint(m_model.Points[index].Position);
-                Gizmos.DrawSphere(worldPosition, GIZMO_SPHERE_SIZE);
-                Vector3 worldTextPosition = worldPosition + new Vector3(GIZMO_SPHERE_SIZE, 0.0f, 0.0f);
-                Handles.Label(worldTextPosition, $"index {index}", style);
-            }
+            //for (int index = 0; index < m_model.Points.Count; index++)
+            //{
+            //    // 기즈모를 그리고 텍스트를 작성합니다.
+            //    Vector3 worldPosition = transform.TransformPoint(m_model.Points[index].Position);
+            //    Gizmos.DrawSphere(worldPosition, GIZMO_SPHERE_SIZE);
+            //    Vector3 worldTextPosition = worldPosition + new Vector3(GIZMO_SPHERE_SIZE, 0.0f, 0.0f);
+            //    Handles.Label(worldTextPosition, $"index {index}", style);
+            //}
         }
 #endif
     }
