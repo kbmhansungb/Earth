@@ -18,18 +18,8 @@ namespace ModelGenerator
 
         private void OnValidate()
         {
-            Model model = new Model();
-
-            var icosahedron = Icosahedron.GetIcosahedron();
-            model.AddPolygons(icosahedron.points, icosahedron.triangles);
-
-            //var icosahedron = meshGenerator.CreateIcosahedron();
-            //var subdividiedIcosahedron = meshGenerator.SubdivideMesh(icosahedron);
-            //// TODO subdivideMesh에서 파라메터로 몇번 나눌 수 있게 할지 해야함
-            //subdividiedIcosahedron = meshGenerator.SubdivideMesh(subdividiedIcosahedron);
-            //subdividiedIcosahedron.normalizeSphere(Vector3.zero);
-            ////subdividiedIcosahedron.RecalculateNormals();
-            //var model = meshGenerator.MakeModel(subdividiedIcosahedron);
+            var icosahedronGenerator = new IcosahedronGenerator();
+            var model = icosahedronGenerator.CreateIcosahedron();
 
             var meshGenerator = new ModelGenerator();
             var newMesh = meshGenerator.MakeMesh(model);

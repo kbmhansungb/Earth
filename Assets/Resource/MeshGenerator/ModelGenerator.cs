@@ -10,7 +10,7 @@ namespace ModelGenerator
     {
     }
 
-    public static class MeshGenerator_Extention
+    public static class ModelGeneratorExtention
     {
         public static Model MakeModel(this ModelGenerator generator, Mesh mesh)
         {

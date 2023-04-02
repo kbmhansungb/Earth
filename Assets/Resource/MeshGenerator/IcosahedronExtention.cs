@@ -1,22 +1,36 @@
+using ModelGenerator.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
+using UnityEngine.UIElements;
+
 namespace ModelGenerator
 {
-    public static class Icosahedron
+    public static class IcosahedronExtention
     {
-        public static (List<Vector3> points, List<int> triangles) GetIcosahedron()
+        /// <summary>
+        /// 모델에 정이십면체를 추가합니다.
+        /// </summary>
+        /// <param name="model"></param>
+        public static void AddIcosahedron(this Model model)
         {
-            List<Vector3> points = GetIcosahedronPoints();
+            List<Vector3> positions = GetIcosahedronPositions();
             List<int> triangles = GetIcosahedronTriangles();
 
-            points = RotateTo(MakeNorthPole, points.AsReadOnly(), 0);
-
-            return (points, triangles);
+            model.AddPolygons(positions, triangles);
         }
 
-        public static List<Vector3> GetIcosahedronPoints()
+        /// <summary>
+        /// 해당 포지션을 북극점으로 회전시키는 쿼터니언을 구합니다.
+        /// </summary>
+        public static Quaternion MakeNorthPoleQuaternion(this Model model, int positionIndex)
+        {
+            return MakeNorthPoleQuaternion(model.Points[positionIndex].Position);
+        }
+
+
+        public static List<Vector3> GetIcosahedronPositions()
         {
             // Golden Ratio
             float t = (1f + Mathf.Sqrt(5f)) / 2f;
@@ -67,22 +81,27 @@ namespace ModelGenerator
             return triangles;
         }
 
-        public static List<Vector3> RotateTo(Func<Vector3, Quaternion> makeRotation, ReadOnlyCollection<Vector3> points, in int standardPointIndex)
-        {
-            Quaternion rotation = makeRotation(points[standardPointIndex]);
-
-            // 각 정점에 회전 적용 후 반환합니다.
-            List<Vector3> newPoints = new List<Vector3>(points.Count);
-            for (int i = 0; i < points.Count; i++)
-            {
-                newPoints.Add(rotation * points[i]);
-            }
-            return newPoints;
-        }
-
-        public static Quaternion MakeNorthPole(Vector3 position)
+        public static Quaternion MakeNorthPoleQuaternion(Vector3 position)
         {
             return Quaternion.FromToRotation(position.normalized, Vector3.up);
+        }
+    }
+
+    public class IcosahedronGenerator : ModelGenerator
+    {
+        /// <summary>
+        /// 모델을 생성합니다. 그리고 정이십면체를 생성한 후,
+        /// 0번 버택스가 극점이 되도록 회전시킵니다.
+        /// </summary>
+        /// <returns></returns>
+        public Model CreateIcosahedron()
+        {
+            Model model = new Model();
+
+            model.AddIcosahedron();
+            model.Rotate( model.MakeNorthPoleQuaternion(0) );
+
+            return model;
         }
     }
 }

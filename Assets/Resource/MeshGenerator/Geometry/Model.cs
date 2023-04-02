@@ -106,5 +106,30 @@ namespace ModelGenerator.Geometry
             }
             return polygons;
         }
+
+        /*
+         * 
+         */
+
+        /// <summary>
+        /// 모델을 회전시킵니다.
+        /// </summary>
+        /// <param name="quaternion">RotateEachPoint의 반환값으로 전달됩니다.</param>
+        public void Rotate(Quaternion quaternion)
+        {
+            RotateEachPoint((point) => { return quaternion; });
+        }
+
+        /// <summary>
+        /// 각각의 점에 회전을 구하여 적용시킵니다.
+        /// </summary>
+        /// <param name="getQuaternion"></param>
+        public void RotateEachPoint(Func<Point, Quaternion> getQuaternionFromPoint)
+        {
+            foreach (var point in m_points)
+            {
+                point.Position = getQuaternionFromPoint(point) * point.Position;
+            }
+        }
     }
 } 
