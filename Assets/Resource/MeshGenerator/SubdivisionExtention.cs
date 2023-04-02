@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ModelGenerator
 {
-    public static class MeshGenerator_SubdivideExtention
+    public static class SubdivisionExtention
     {
         public static Mesh SubdivideMesh(this ModelGenerator generator, Mesh mesh)
         {
