@@ -13,6 +13,7 @@ namespace ModelGenerator
     public class HexagonalTest : MonoBehaviour
     {
         [SerializeField] private MeshFilter m_meshFilter;
+        int subdivisionLevel = 0;
         private Model m_model;
 
         private void OnValidate()
@@ -24,33 +25,16 @@ namespace ModelGenerator
             m_model = subdivisionGenerator.CreateSubdivision(m_model);
             m_model = subdivisionGenerator.CreateSubdivision(m_model);
             m_model = subdivisionGenerator.CreateSubdivision(m_model);
+            m_model = subdivisionGenerator.CreateSubdivision(m_model);
 
             var meshGenerator = new ModelGenerator();
             m_model.NormalizeSphere(Vector3.zero);
 
             m_model = icosahedronGenerator.CreatePentaHexagonalSphere(m_model);
 
-            m_meshFilter.mesh = meshGenerator.MakeMesh(m_model);
-            m_meshFilter.mesh.RecalculateNormals();
+            Mesh newMesh = meshGenerator.MakeMesh(m_model);
+            newMesh.RecalculateNormals();
+            m_meshFilter.mesh = newMesh;
         }
-
-#if UNITY_EDITOR
-        const float GIZMO_SPHERE_SIZE = 0.01f;
-
-        private void OnDrawGizmosSelected()
-        {
-            //GUIStyle style = new GUIStyle();
-            //style.normal.textColor = Color.white;
-
-            //for (int index = 0; index < m_model.Points.Count; index++)
-            //{
-            //    // 기즈모를 그리고 텍스트를 작성합니다.
-            //    Vector3 worldPosition = transform.TransformPoint(m_model.Points[index].Position);
-            //    Gizmos.DrawSphere(worldPosition, GIZMO_SPHERE_SIZE);
-            //    Vector3 worldTextPosition = worldPosition + new Vector3(GIZMO_SPHERE_SIZE, 0.0f, 0.0f);
-            //    Handles.Label(worldTextPosition, $"index {index}", style);
-            //}
-        }
-#endif
     }
 }
