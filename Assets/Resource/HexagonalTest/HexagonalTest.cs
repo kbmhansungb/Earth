@@ -13,26 +13,25 @@ namespace ModelGenerator
     public class HexagonalTest : MonoBehaviour
     {
         [SerializeField] private MeshFilter m_meshFilter;
-        int subdivisionLevel = 0;
+        [SerializeField] int subdivisionLevel = 0;
+        [SerializeField] float noiseScale = 1.0f;
+        [SerializeField] float noiseWeight = 1.0f;
         private Model m_model;
 
         private void OnValidate()
         {
-            var icosahedronGenerator = new IcosahedronGenerator();
-            m_model = icosahedronGenerator.CreateIcosahedron();
+            m_model = Model.CreateIcosahedron();
 
-            var subdivisionGenerator = new SubdivisionGenerator();
-            m_model = subdivisionGenerator.CreateSubdivision(m_model);
-            m_model = subdivisionGenerator.CreateSubdivision(m_model);
-            m_model = subdivisionGenerator.CreateSubdivision(m_model);
-            m_model = subdivisionGenerator.CreateSubdivision(m_model);
+            for (int subdivision = 0; subdivision < subdivisionLevel; subdivision++)
+            {
+                m_model = m_model.CreateSubdivision();
+            }
 
-            var meshGenerator = new ModelGenerator();
             m_model.NormalizeSphere(Vector3.zero);
+            m_model = m_model.CreatePentaHexagonalSphere();
+            m_model.AddPerlinNoise(Vector3.zero, noiseScale, noiseWeight);
 
-            m_model = icosahedronGenerator.CreatePentaHexagonalSphere(m_model);
-
-            Mesh newMesh = meshGenerator.MakeMesh(m_model);
+            Mesh newMesh = m_model.CreateMesh();
             newMesh.RecalculateNormals();
             m_meshFilter.mesh = newMesh;
         }
