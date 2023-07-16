@@ -55,5 +55,15 @@ namespace ModelGenerator.Geometry
                 m_reversedLine.m_right = polygon;
             }
         }
+
+        /// <summary>
+        /// 같은 맥락의 선인지 검사합니다.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public bool IsSame(Line other)
+        {
+            return (m_begin == other.m_begin && m_end == other.m_end) || (m_begin == other.m_end && m_end == other.m_begin);
+        }
     }
 } 

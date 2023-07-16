@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using UnityEngine;
 using ModelGenerator.Geometry;
 using System;
-using MeshGenerator.Math;
+using ModelGenerator.Math;
 
 namespace ModelGenerator.Geometry
 {

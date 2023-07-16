@@ -27,7 +27,6 @@ namespace ModelGenerator.Geometry
 
         /// <summary>
         /// 생성된 점에 선이 추가되었는지 검사합니다.
-        /// 선은 점에 추가되어야 하지만, 반전된 선은 점에 추가되면 안됩니다.
         /// </summary>
         [Test]
         public void IsPointHaveLine()
@@ -35,7 +34,7 @@ namespace ModelGenerator.Geometry
             (Line line, Point begin, Point end) = CretaeLine();
 
             Assert.IsTrue(begin.Lines[0] == line && begin.Lines.Count == 1, "Line are not added correctly to begin vertex.");
-            Assert.IsTrue(end.Lines[0] == line && end.Lines.Count == 1, "Line are not added correctly to end vertex.");
+            Assert.IsTrue(end.Lines[0].ReversedLine == line && end.Lines.Count == 1, "Line are not added correctly to end vertex.");
         }
 
         /// <summary>

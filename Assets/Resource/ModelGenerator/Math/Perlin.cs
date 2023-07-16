@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MeshGenerator.Math
+namespace ModelGenerator.Math
 {
     public static class Perlin
     {
