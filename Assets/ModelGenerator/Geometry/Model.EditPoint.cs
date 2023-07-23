@@ -5,7 +5,6 @@ using UnityEngine;
 using ModelGenerator.Geometry;
 using System;
 using Extension;
-using Extension;
 
 namespace ModelGenerator.Geometry
 {
