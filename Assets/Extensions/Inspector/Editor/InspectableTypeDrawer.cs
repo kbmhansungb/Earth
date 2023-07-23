@@ -14,7 +14,7 @@ public class InspectableTypeDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        var storedProperty = property.FindPropertyRelative("qualifiedName");
+        var storedProperty = property.FindPropertyRelative("m_qualifiedName");
         string qualifiedName = storedProperty.stringValue;
 
         if (m_optionLabels == null)
