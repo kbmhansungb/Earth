@@ -1,0 +1,16 @@
+{
+    "name": "ModelGenerator",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c4a083390b062c846bd0c0b330b98238"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

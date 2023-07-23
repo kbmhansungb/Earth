@@ -1,0 +1,17 @@
+{
+    "name": "ProceduralGenerator",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c4a083390b062c846bd0c0b330b98238",
+        "GUID:c90f921c0d2868a4fbb1a5cb73e72619"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
