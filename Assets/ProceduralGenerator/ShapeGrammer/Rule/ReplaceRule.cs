@@ -8,8 +8,9 @@ using UnityEngine;
 namespace ShapeGrammer
 {
     [Serializable]
-    class Rule1 : Rule
+    class ReplaceRule : Rule
     {
-        [SerializeField] private int m_rule1;
+        [Header("ReplaceRule")]
+        [SerializeField] private GameObject prefab;
     }
 }

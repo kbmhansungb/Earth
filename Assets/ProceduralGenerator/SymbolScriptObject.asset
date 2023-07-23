@@ -12,7 +12,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67cbea7c7487fd8498ac82e5dc86b4d9, type: 3}
   m_Name: SymbolScriptObject
   m_EditorClassIdentifier: 
-  m_rules: []
+  m_rules:
+  - rid: 1933153072557064195
+  - rid: 1933153072557064197
+  - rid: 1933153072557064198
+  - rid: 1933153072557064199
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 1933153072557064195
+      type: {class: ExpandRule, ns: ShapeGrammer, asm: ProceduralGenerator}
+      data:
+        SearchTag:
+        - Shape:
+            m_qualifiedName: ModelGenerator.Geometry.Line, ModelGenerator, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            baseTypeName: ModelGenerator.Geometry.Shape, ModelGenerator, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+          Tag: Path
+        ResultTag:
+        - Shape:
+            m_qualifiedName: ModelGenerator.Geometry.Polygon, ModelGenerator, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            baseTypeName: ModelGenerator.Geometry.Shape, ModelGenerator, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+          Tag: BeltConveyor
+        m_expandAxis: {x: 1, y: 0, z: 0}
+        m_checkCollision: 0
+    - rid: 1933153072557064197
+      type: {class: ExpandRule, ns: ShapeGrammer, asm: ProceduralGenerator}
+      data:
+        SearchTag:
+        - Shape:
+            m_qualifiedName: ModelGenerator.Geometry.Polygon, ModelGenerator, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            baseTypeName: ModelGenerator.Geometry.Shape, ModelGenerator, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+          Tag: BeltConveyor
+        ResultTag:
+        - Shape:
+            m_qualifiedName: ModelGenerator.Geometry.Line, ModelGenerator, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            baseTypeName: ModelGenerator.Geometry.Shape, ModelGenerator, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+          Tag: Support
+        m_expandAxis: {x: 0, y: 0, z: -1}
+        m_checkCollision: 1
+    - rid: 1933153072557064198
+      type: {class: ReplaceRule, ns: ShapeGrammer, asm: ProceduralGenerator}
+      data:
+        SearchTag:
+        - Shape:
+            m_qualifiedName: ModelGenerator.Geometry.Polygon, ModelGenerator, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            baseTypeName: ModelGenerator.Geometry.Shape, ModelGenerator, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+          Tag: BeltConveyor
+        ResultTag: []
+        prefab: {fileID: 0}
+    - rid: 1933153072557064199
+      type: {class: ReplaceRule, ns: ShapeGrammer, asm: ProceduralGenerator}
+      data:
+        SearchTag:
+        - Shape:
+            m_qualifiedName: ModelGenerator.Geometry.Line, ModelGenerator, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            baseTypeName: ModelGenerator.Geometry.Shape, ModelGenerator, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+          Tag: Support
+        ResultTag: []
+        prefab: {fileID: 0}

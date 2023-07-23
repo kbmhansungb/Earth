@@ -47,7 +47,8 @@ public class InspectableTypeDrawer : PropertyDrawer
         return baseType.Assembly
             .GetTypes()
             .Where(t =>
-                t != baseType &&
+                //t != baseType &&
+                t.IsAbstract == false &&
                 baseType.IsAssignableFrom(t)
                 ).ToArray<Type>();
     }
@@ -69,7 +70,8 @@ public class InspectableTypeDrawer : PropertyDrawer
         m_optionLabels = new GUIContent[m_derivedTypes.Length + 1];
         for (int i = 0; i < m_derivedTypes.Length; i++)
         {
-            m_optionLabels[i] = new GUIContent(m_derivedTypes[i].Name);
+            //m_optionLabels[i] = new GUIContent(m_derivedTypes[i].Name);
+            m_optionLabels[i] = new GUIContent(m_derivedTypes[i].FullName);
         }
         m_optionLabels[m_derivedTypes.Length] = new GUIContent("null");
 
